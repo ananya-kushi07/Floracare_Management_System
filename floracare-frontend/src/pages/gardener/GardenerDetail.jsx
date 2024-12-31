@@ -2,7 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Box, Typography, Divider } from "@mui/material";
 import { motion } from "framer-motion";
-// import Footer from "./Footer";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 
 const gardeners = [
   {
@@ -47,7 +48,9 @@ function GardenerDetail() {
   }
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", p: 4, gap: 4 }}>
+    <>
+    <Navbar/>
+    <Box sx={{ display: "flex", alignItems: "center", p: 4, gap: 4 ,my:"35px"}}>
       {/* Left Side - Image */}
       <motion.div
         initial={{ x: "-100%" }}
@@ -112,6 +115,8 @@ function GardenerDetail() {
         </Box>
       </motion.div>
     </Box>
+    <Footer/>
+    </>
   );
 }
 

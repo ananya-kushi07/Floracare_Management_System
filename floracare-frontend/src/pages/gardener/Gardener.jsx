@@ -3,6 +3,7 @@ import { Box, Typography, Button, Card, CardMedia, CardContent } from "@mui/mate
 import { Link } from "react-router-dom";
 // import john from "../../assets/john.jpg";
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const gardeners = [
   { id: 1, name: "John Doe", bio: "Expert in landscape gardening", image: "https://c8.alamy.com/comp/H7927P/chris-beardshaw-award-winning-british-gardener-known-for-his-work-H7927P.jpg" },
@@ -111,6 +112,7 @@ function GardenerPage() {
         </Button>
       </Box>
     </Box>
+    <Footer/>
     </>
   );
 }
