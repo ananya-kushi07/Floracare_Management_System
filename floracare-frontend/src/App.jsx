@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
 import "./App.css";
-import Plant from "./pages/plant/Plant";
+import Plant from "./pages/plant/PlantList";
 import Gardener from "./pages/gardener/Gardener";
 import Fertilizer from "./pages/fertilizer/Fertilizer";
 import Sidebar from "./components/Sidebar";
