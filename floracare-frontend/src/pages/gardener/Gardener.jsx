@@ -2,17 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Typography, Button, Card, CardMedia, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
-<<<<<<< HEAD
-import Footer from "../../components/Footer";
-
-const gardeners = [
-  { id: 1, name: "John Doe", bio: "Expert in landscape gardening", image: "https://c8.alamy.com/comp/H7927P/chris-beardshaw-award-winning-british-gardener-known-for-his-work-H7927P.jpg" },
-  { id: 2, name: "Jane Smith", bio: "Specialist in urban gardening", image: "https://www.theglobeandmail.com/resizer/v2/7GKCAZJ3GBBB3LDHSOKBIZ364A.JPG?auth=770c111afc6b60f190e2e4785452026dffe0796cd5cc5c11ec589565bf91db3f&width=1200&height=800&quality=80&smart=true" },
-  { id: 3, name: "Sam Wilson", bio: "Organic farming enthusiast", image: "https://img.freepik.com/premium-photo/serious-male-gardener-checking-fresh-plants-hothouse_641503-140572.jpg" },
-];
-=======
 import axios from "axios"; // For making API requests
->>>>>>> bb38e7f5e220deacd805e920d530ffa9d8de2e87
 
 function GardenerPage() {
   const [gardeners, setGardeners] = useState([]);
