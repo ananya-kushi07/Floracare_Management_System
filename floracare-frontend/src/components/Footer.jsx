@@ -10,10 +10,10 @@ function Footer() {
   // Function to handle sign up (redirect to login page)
   const handleSignUp = () => {
     if (email) {
-      // You can add logic here to send the email to your backend or perform validation if needed
-      navigate("/"); // Redirect to login page
+      navigate("/signup", { state: { email } }); // Pass email as state
     }
   };
+  
 
   return (
     <Box
