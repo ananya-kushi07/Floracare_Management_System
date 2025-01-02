@@ -57,6 +57,12 @@ const Login = () => {
           >
             Login
           </Button>
+              <Typography variant="body2" textAlign="center">
+                      Don't have an account?{" "}
+                      <Link href="/signup" underline="hover">
+                        Sign Up
+                      </Link>
+                    </Typography>
         </Box>
       </Grid>
 
@@ -67,31 +73,40 @@ const Login = () => {
 
       {/* Right Side - Sign Up Section */}
       <Grid item xs={12} md={5} display="flex" alignItems="center" justifyContent="center">
-        <Box
+      <Box
+          component="form"
+          onSubmit={handleLogin}
           sx={{
             width: "80%",
             maxWidth: 400,
             display: "flex",
             flexDirection: "column",
             gap: 3,
-            paddingLeft: { xs: 0, md: 3 },
+            paddingRight: { xs: 0, md: 3 },
           }}
         >
           <Typography variant="h4" fontWeight="bold" gutterBottom>
-            As New Customer
+            As Admin
           </Typography>
+          <Typography variant="body1" sx={{ marginBottom: 0 }}>
+            By creating an account, dive into FloraCare .
+          </Typography>
+
           <Typography variant="body1" sx={{ marginBottom: 3 }}>
-            By creating an account, dive into FloraCare and manage your plants, tools, and gardening needs.
+            If you have an account, log in with your email.
           </Typography>
+          <TextField label="Email" type="email" fullWidth required />
+          <TextField label="Password" type="password" fullWidth required />
           <Button
+            type="submit"
             variant="contained"
             color="secondary"
             size="large"
             sx={{ textTransform: "none", fontSize: "1rem" }}
-            onClick={() => navigate("/signup")}
           >
-            Create Account
+            Login
           </Button>
+      
         </Box>
       </Grid>
     </Grid>

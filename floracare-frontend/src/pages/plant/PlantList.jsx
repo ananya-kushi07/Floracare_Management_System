@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const PlantsList = () => {
     const [plants, setPlants] = useState([]);
@@ -17,6 +19,8 @@ const PlantsList = () => {
     }, []);
 
     return (
+        <>
+        <Navbar/>
         <div style={{ padding: "20px" }}>
             <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Plants List</h1>
             <table
@@ -74,6 +78,8 @@ const PlantsList = () => {
                 </tbody>
             </table>
         </div>
+   <Footer/>
+        </>
     );
 };
 
