@@ -1,11 +1,18 @@
-const express = require('express');
-const GardenerController = require('../controllers/gardenerController');
+const express = require("express");
 const router = express.Router();
+const db = require("../config/dbConfig");
 
-// Route to get all gardeners
-router.get('/', GardenerController.getAllGardeners);
-
-// Route to add a new gardener
-router.post('/', GardenerController.addGardener);
+// Get all gardeners
+router.get("/", (req, res) => {
+  const query = "SELECT * FROM gardeners"; // Replace with your actual table name
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching gardeners:", err);
+      res.status(500).send("Server error");
+    } else {
+      res.json(results);
+    }
+  });
+});
 
 module.exports = router;

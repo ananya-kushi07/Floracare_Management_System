@@ -1,6 +1,23 @@
-const app = require('./app');
-const PORT = process.env.PORT || 3000;
+const express = require('express');
+const cors = require('cors');
+const plantsRoutes = require('./routes/plantsRoutes');
+const gardenerRoutes = require('./routes/gardenerRoutes');
 
+const app = express();
+const PORT = 5000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+// app.use("/", (req, res) => {
+//     res.send("Welcome to the DistOpt API");
+//   });
+
+// Routes
+app.use('/api/plants', plantsRoutes);
+app.use('/api/gardeners', gardenerRoutes);
+
+// Start server
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
