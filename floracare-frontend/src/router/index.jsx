@@ -10,6 +10,7 @@ const AppRouter = () => {
         <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
+    
   );
 };
 

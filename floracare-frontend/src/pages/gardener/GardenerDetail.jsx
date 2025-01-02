@@ -1,39 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Typography, Divider } from "@mui/material";
 import { motion } from "framer-motion";
-// import Footer from "./Footer";
-
-const gardeners = [
-  {
-    id: 1,
-    name: "John Doe",
-    bio: "Expert in landscape gardening with 10 years of experience.",
-    details:
-      "John has worked on numerous landscaping projects across the country, focusing on eco-friendly designs.",
-    image: "https://c8.alamy.com/comp/H79285/chris-beardshaw-award-winning-british-gardener-known-for-his-work-H79285.jpg",
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    bio: "Specializes in organic gardening and sustainable practices.",
-    details:
-      "Jane is renowned for her expertise in organic gardening methods that prioritize soil health.",
-    image: "https://images.squarespace-cdn.com/content/v1/61e1abe744f8dd3b789d8619/1667603921066-8K33QRVQHMARU0390QUN/CarlosMoniz.jpg",
-  },
-  {
-    id: 3,
-    name: "Michael Brown",
-    bio: "A passionate gardener focusing on urban green spaces.",
-    details:
-      "Michael's mission is to transform urban areas into vibrant green spaces through innovative designs.",
-    image: "https://img.freepik.com/premium-photo/serious-male-gardener-checking-fresh-plants-hothouse_641503-140572.jpg",
-  },
-];
+import axios from "axios"; // For making API requests
 
 function GardenerDetail() {
-  const { id } = useParams();
-  const gardener = gardeners.find((g) => g.id === parseInt(id));
+  const { id } = useParams(); // Get the ID from the URL
+  const [gardener, setGardener] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch gardener details from backend
+  useEffect(() => {
+    const fetchGardenerDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/gardeners/${id}`);
+        setGardener(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching gardener details:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchGardenerDetails();
+  }, [id]); // Fetch data whenever the ID changes
+
+  if (loading) {
+    return (
+      <Typography
+        variant="h6"
+        sx={{ textAlign: "center", color: "#4A6670", mt: 4 }}
+      >
+        Loading gardener details...
+      </Typography>
+    );
+  }
 
   if (!gardener) {
     return (
@@ -61,8 +62,8 @@ function GardenerDetail() {
         }}
       >
         <img
-          src={gardener.image}
-          alt={gardener.name}
+          src={gardener.image || "https://via.placeholder.com/200"} // Fallback to placeholder if image is missing
+          alt={gardener.G_name}
           style={{ width: "100%", height: "auto" }}
         />
       </motion.div>
@@ -92,12 +93,22 @@ function GardenerDetail() {
               fontWeight: "bold",
               color: "#4A6670",
               mb: 2,
+              pt:10
             }}
           >
-            {gardener.name}
+            {gardener.G_name}
+          </Typography>
+          <Typography variant="body1" sx={{ color: "#4A6670", mb: 2 }}>
+            <strong>Phone:</strong> {gardener.Phone}
+          </Typography>
+          <Typography variant="body1" sx={{ color: "#4A6670", mb: 2 }}>
+            <strong>Experience Level:</strong> {gardener.Experience_level}
           </Typography>
           <Typography variant="body1" sx={{ color: "#4A6670", mb: 4 }}>
-            {gardener.bio}
+            <strong>Specialization:</strong> {gardener.Specialization}
+          </Typography>
+          <Typography variant="body2" sx={{ fontSize: "1.1rem", lineHeight: 1.8, color: "#4A6670", mb: 4 }}>
+            <strong>Feeling in the field:</strong> {gardener.Feeling_in_field || "Gardener's passion for this field is unparalleled, and they find joy in nurturing plants and helping others connect with nature.It has helped me to boost my confidence. The gardening experience and process taught me that each day a new leaf grows and the old one falls. So, we should never get upset about our failures as each day brings new opportunities. And the main and most importantly I learned patience."}
           </Typography>
           <Typography
             variant="body2"
@@ -107,7 +118,7 @@ function GardenerDetail() {
               color: "#4A6670",
             }}
           >
-            {gardener.details}
+            {/* You can add any other details here if needed */}
           </Typography>
         </Box>
       </motion.div>

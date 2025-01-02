@@ -52,7 +52,7 @@ function GardenerPage() {
   return (
     <>
       <Navbar />
-      <Box sx={{ backgroundColor: "#EAF4F4", minHeight: "100vh", padding: "20px" }}>
+      <Box sx={{ backgroundColor: "#EAF4F4",minWidth:"200vh", minHeight: "100vh", padding: "20px" ,pt: 10 }}>
         <Typography variant="h3" align="center" sx={{ marginBottom: "40px", color: "#4A6670", my: "27px" }}>
           Meet Our Gardeners
         </Typography>
@@ -99,16 +99,16 @@ function GardenerPage() {
               >
                 <CardMedia
                   component="img"
-                  image={gardener.G_image} // Assuming G_image is the image field in the database
+                  image={gardener.image || "https://via.placeholder.com/200"} // Use the image field from the API response
                   alt={gardener.G_name}
                   sx={{ height: "60%", objectFit: "cover" }}
                 />
                 <CardContent>
                   <Typography variant="h5" align="center">
-                    {gardener.G_name} {/* Assuming G_name is the name field */}
+                    {gardener.G_name}
                   </Typography>
                   <Typography variant="body2" align="center">
-                    {gardener.G_bio} {/* Assuming G_bio is the bio field */}
+                    {gardener.Experience_level} - {gardener.Specialization}
                   </Typography>
                 </CardContent>
               </Card>

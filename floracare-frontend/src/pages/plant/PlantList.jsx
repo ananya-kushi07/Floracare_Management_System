@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Box, Card, CardContent, Typography, CardMedia,Grid2 } from '@mui/material';
 
 const PlantsList = () => {
     const [plants, setPlants] = useState([]);
@@ -7,9 +8,11 @@ const PlantsList = () => {
     useEffect(() => {
         // Fetch data from backend
         axios
-            .get("/api/plants")
+            .get('http://localhost:5000/api/plants')
             .then((response) => {
-                setPlants(response.data);
+                // console.log("API Response:", response.data); // Debug the API response
+                const data = Array.isArray(response.data) ? response.data : []; // Ensure data is an array
+                setPlants(data);
             })
             .catch((error) => {
                 console.error("Error fetching plants:", error);
@@ -17,63 +20,71 @@ const PlantsList = () => {
     }, []);
 
     return (
-        <div style={{ padding: "20px" }}>
-            <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Plants List</h1>
-            <table
-                style={{
-                    width: "100%",
-                    borderCollapse: "collapse",
-                    margin: "20px 0",
-                    fontSize: "18px",
-                    textAlign: "left",
-                }}
+        <Box sx={{ p: 3,pt: 10  }}>
+      <Typography variant="h4" gutterBottom align="center" sx={{ mb: 4 ,color: "black" }}>
+        🌱 Beautiful Plants Collection 🌿
+      </Typography>
+      <Grid2
+        container
+        spacing={3}
+        justifyContent="center"
+        alignItems="center"
+      >
+        {plants.map((plant) => (
+          <Grid2 item xs={12} sm={6} md={4} lg={3} key={plant.P_id}>
+            <Card
+              sx={{
+                maxWidth: 500,
+                boxShadow: 3,
+                transition: "transform 0.3s, box-shadow 0.3s",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: 6,
+                },
+                backgroundColor: "#f5f5f5",
+                borderRadius: "10px",
+                overflow: "hidden",
+              }}
             >
-                <thead>
-                    <tr style={{ backgroundColor: "#f2f2f2" }}>
-                        <th style={{ border: "1px solid #ddd", padding: "8px" }}>Photo</th>
-                        <th style={{ border: "1px solid #ddd", padding: "8px" }}>Name</th>
-                        <th style={{ border: "1px solid #ddd", padding: "8px" }}>Type</th>
-                        <th style={{ border: "1px solid #ddd", padding: "8px" }}>Age</th>
-                        <th style={{ border: "1px solid #ddd", padding: "8px" }}>Life Span</th>
-                        <th style={{ border: "1px solid #ddd", padding: "8px" }}>Planting Season</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {plants.length > 0 ? (
-                        plants.map((plant) => (
-                            <tr key={plant.P_id}>
-                                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                                    <img
-                                        src={plant.photo_url}
-                                        alt={plant.P_name}
-                                        style={{ width: "100px", height: "auto", borderRadius: "8px" }}
-                                    />
-                                </td>
-                                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{plant.P_name}</td>
-                                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{plant.P_type}</td>
-                                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{plant.Age}</td>
-                                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{plant.Life_span}</td>
-                                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{plant.Planting_season}</td>
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td
-                                colSpan="6"
-                                style={{
-                                    textAlign: "center",
-                                    padding: "20px",
-                                    fontSize: "18px",
-                                    color: "gray",
-                                }}
-                            >
-                                No plants available.
-                            </td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        </div>
+              <CardMedia
+                component="img"
+                height="350"
+                image={plant.photo_url || "https://via.placeholder.com/200"}
+                alt={plant.P_name}
+                sx={{
+                  objectFit: "cover",
+                  filter: "brightness(100%)",
+                  "&:hover": { filter: "brightness(100%)" },
+                }}
+              />
+              <CardContent>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#4CAF50",
+                  }}
+                >
+                  {plant.P_name}
+                </Typography>
+                <Typography variant="body2" sx={{ color: "#616161" }}>
+                  Type: {plant.P_type}
+                </Typography>
+                <Typography variant="body2" sx={{ color: "#616161" }}>
+                  Age: {plant.Age} years
+                </Typography>
+                <Typography variant="body2" sx={{ color: "#616161" }}>
+                  Life Span: {plant.Life_span} years
+                </Typography>
+                <Typography variant="body2" sx={{ color: "#616161" }}>
+                  Planting Season: {plant.Planting_season}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid2>
+        ))}
+      </Grid2>
+    </Box>
     );
 };
 

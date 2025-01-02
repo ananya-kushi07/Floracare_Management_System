@@ -9,8 +9,24 @@ const FertilizerModel = {
         } else {
             // Mock Data
             const mockData = [
-                { F_id: 1, F_name: "Compost", Price: 50, Expiry_date: "2025-12-31", Quality_level: "High" },
-                { F_id: 2, F_name: "Organic Fertilizer", Price: 30, Expiry_date: "2024-06-30", Quality_level: "Medium" },
+                {
+                    F_id: 1,
+                    F_name: "Miracle-Gro",
+                    Price: 19.99,
+                    Expiry_date: "2024-12-31",
+                    Quality_level: "High",
+                    image: "https://via.placeholder.com/150?text=Miracle-Gro", // Replace with actual image URL
+                    link: "/fertilizer/1", // Link to details page
+                  },
+                  {
+                    F_id: 2,
+                    F_name: "Compost",
+                    Price: 9.99,
+                    Expiry_date: "2025-06-30",
+                    Quality_level: "Medium",
+                    image: "https://via.placeholder.com/150?text=Compost", // Replace with actual image URL
+                    link: "/fertilizer/2", // Link to details page
+                  },
             ];
             callback(null, mockData);
         }

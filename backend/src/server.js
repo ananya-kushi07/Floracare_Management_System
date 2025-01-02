@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const plantsRoutes = require('./routes/plantsRoutes');
 const gardenerRoutes = require('./routes/gardenerRoutes');
+const fertilizerRoutes = require('./routes/fertilizerRoutes');
 
 const app = express();
 const PORT = 5000;
@@ -16,6 +17,7 @@ app.use(express.json());
 // Routes
 app.use('/api/plants', plantsRoutes);
 app.use('/api/gardeners', gardenerRoutes);
+app.use('/api/fertilizers', fertilizerRoutes);
 
 // Start server
 app.listen(PORT, () => {

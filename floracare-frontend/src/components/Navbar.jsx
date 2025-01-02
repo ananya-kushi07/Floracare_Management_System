@@ -18,7 +18,7 @@ function Navbar() {
     <AppBar
       position="fixed"
       sx={{
-        backgroundColor: "#A0AF84",
+        backgroundColor: "#B6FFA1",
         width: "100%",
         opacity: "70%",
       }}

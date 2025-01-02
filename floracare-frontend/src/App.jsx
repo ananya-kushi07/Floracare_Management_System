@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/Auth/Login";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import SignUp from "./pages/Auth/SignUp";
 import "./App.css";
 import Plant from "./pages/plant/PlantList";
@@ -15,7 +17,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-     
+      <Navbar />
 
         {/* Routes */}
         <Routes>
@@ -29,6 +31,7 @@ function App() {
           <Route path="/gardener/:id" element={<GardenerDetail />} />
 
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
