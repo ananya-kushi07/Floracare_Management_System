@@ -141,11 +141,6 @@ function GardenerPage() {
           </Button>
         </Box>
       </Box>
-<<<<<<< HEAD
-    </Box>
-    <Footer/>
-=======
->>>>>>> bb38e7f5e220deacd805e920d530ffa9d8de2e87
     </>
   );
 }
