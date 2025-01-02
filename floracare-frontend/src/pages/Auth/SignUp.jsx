@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Grid, Card, Typography, TextField, Button, Link } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [email, setEmail] = useState(location.state?.email || ""); // Set email if passed via state
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -55,7 +57,14 @@ const SignUp = () => {
             Sign Up
           </Typography>
           <TextField label="Name" type="text" fullWidth required />
-          <TextField label="Email" type="email" fullWidth required />
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            required
+            value={email} // Pre-fill with passed email
+            onChange={(e) => setEmail(e.target.value)} // Allow updates to email field
+          />
           <TextField label="Phone" type="tel" fullWidth required />
           <TextField label="Password" type="password" fullWidth required />
           <Button
@@ -69,7 +78,7 @@ const SignUp = () => {
           </Button>
           <Typography variant="body2" textAlign="center">
             Already have an account?{" "}
-            <Link href="/login" underline="hover">
+            <Link href="/" underline="hover">
               Login
             </Link>
           </Typography>

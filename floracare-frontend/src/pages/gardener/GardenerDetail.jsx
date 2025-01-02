@@ -48,7 +48,9 @@ function GardenerDetail() {
   }
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", p: 4, gap: 4 }}>
+    <>
+    <Navbar/>
+    <Box sx={{ display: "flex", alignItems: "center", p: 4, gap: 4 ,my:"35px"}}>
       {/* Left Side - Image */}
       <motion.div
         initial={{ x: "-100%" }}
@@ -123,6 +125,8 @@ function GardenerDetail() {
         </Box>
       </motion.div>
     </Box>
+    <Footer/>
+    </>
   );
 }
 
