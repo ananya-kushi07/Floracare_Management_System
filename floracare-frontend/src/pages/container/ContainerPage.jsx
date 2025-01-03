@@ -11,7 +11,6 @@ const ContainersPage = () => {
     Color: "",
   });
 
-  // Fetch all containers from the backend
   const fetchContainers = async () => {
     const response = await fetch("http://localhost:5000/api/containers");
     if (response.ok) {
@@ -20,12 +19,10 @@ const ContainersPage = () => {
     }
   };
 
-  // Handle form input changes
   const handleChange = (e) => {
     setNewContainer({ ...newContainer, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission for adding a new container
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5000/api/containers", {
@@ -38,45 +35,61 @@ const ContainersPage = () => {
 
     if (response.ok) {
       alert("Container added successfully!");
-      fetchContainers(); // Refresh container list after adding
+      fetchContainers();
     }
   };
 
-  // Fetch containers when the component mounts
   useEffect(() => {
     fetchContainers();
   }, []);
 
-  // Inline styles in JS
   const containerPageStyle = {
-    padding: "20px",
-    fontFamily: "Arial, sans-serif",
+    padding: "50px",
+    fontFamily: "'Roboto', sans-serif",
+    color: "#333",
+  };
+
+  const headerStyle = {
+    textAlign: "center",
+    marginBottom: "20px",
+    color: "#4A0670",
   };
 
   const containersListStyle = {
-    display: "flex",
-    flexWrap: "wrap",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
     gap: "20px",
   };
 
   const containerItemStyle = {
-    border: "1px solid #ccc",
-    padding: "10px",
-    width: "200px",
-    backgroundColor: "#f9f9f9",
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    padding: "15px",
+    backgroundColor: "#fff",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   };
 
   const containerItemTitleStyle = {
-    fontSize: "18px",
+    fontSize: "20px",
+    fontWeight: "bold",
     marginBottom: "10px",
+    color: "#4A0670",
   };
 
   const containerItemTextStyle = {
     margin: "5px 0",
+    fontSize: "14px",
+    color: "#555",
   };
 
   const formStyle = {
-    marginTop: "20px",
+    marginTop: "30px",
+    maxWidth: "500px",
+    margin: "0 auto",
+    backgroundColor: "#f9f9f9",
+    padding: "20px",
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   };
 
   const inputStyle = {
@@ -85,6 +98,7 @@ const ContainersPage = () => {
     width: "100%",
     border: "1px solid #ccc",
     borderRadius: "4px",
+    fontSize: "14px",
   };
 
   const buttonStyle = {
@@ -93,7 +107,9 @@ const ContainersPage = () => {
     color: "white",
     border: "none",
     borderRadius: "4px",
+    fontSize: "16px",
     cursor: "pointer",
+    transition: "background-color 0.3s ease",
   };
 
   const buttonHoverStyle = {
@@ -103,7 +119,7 @@ const ContainersPage = () => {
   return (
     <div style={containerPageStyle}>
       <Navbar />
-      <h2>Containers List</h2>
+      <h2 style={headerStyle}>Containers List</h2>
       <div style={containersListStyle}>
         {containers.map((container) => (
           <div key={container.C_id} style={containerItemStyle}>
@@ -115,7 +131,7 @@ const ContainersPage = () => {
         ))}
       </div>
 
-      <h2>Add New Container</h2>
+      <h2 style={headerStyle}>Add New Container</h2>
       <form onSubmit={handleSubmit} style={formStyle}>
         <input
           name="C_name"
@@ -145,7 +161,12 @@ const ContainersPage = () => {
           required
           style={inputStyle}
         />
-        <button type="submit" style={buttonStyle} onMouseOver={e => e.target.style.backgroundColor = buttonHoverStyle.backgroundColor} onMouseOut={e => e.target.style.backgroundColor = buttonStyle.backgroundColor}>
+        <button
+          type="submit"
+          style={buttonStyle}
+          onMouseOver={(e) => (e.target.style.backgroundColor = buttonHoverStyle.backgroundColor)}
+          onMouseOut={(e) => (e.target.style.backgroundColor = buttonStyle.backgroundColor)}
+        >
           Add Container
         </button>
       </form>
