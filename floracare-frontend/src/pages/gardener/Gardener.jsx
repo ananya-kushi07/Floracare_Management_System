@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Box, Typography, Button, Card, CardMedia, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import axios from "axios"; // For making API requests
+import AddGardener from './GardenerPage';
 
 function GardenerPage() {
   const [gardeners, setGardeners] = useState([]);
@@ -141,6 +143,8 @@ function GardenerPage() {
           </Button>
         </Box>
       </Box>
+      <AddGardener />
+      <Footer/>
     </>
   );
 }

@@ -35,7 +35,7 @@ function Navbar() {
         </Typography>
         <Button
           component={Link}
-          to="/Home"
+          to="/"
           sx={{
             color: "#4A0670",
             textTransform: "none",
@@ -141,6 +141,62 @@ function Navbar() {
         >
           Fertilizer
         </Button>
+        <Button
+  component={Link}
+  to="/tools"
+  sx={{
+    color: "#4A0670",
+    textTransform: "none",
+    position: "relative",
+    "&:hover:after": {
+      transform: "scaleX(1)",
+      transformOrigin: "bottom left",
+    },
+    "&:after": {
+      content: '""',
+      position: "absolute",
+      left: 0,
+      bottom: 0,
+      width: "100%",
+      height: "2px",
+      backgroundColor: "#4A6670",
+      transform: "scaleX(0)",
+      transformOrigin: "bottom right",
+      transition: "transform 0.3s ease",
+    },
+  }}
+>
+  Tools
+</Button>
+
+<Button
+  component={Link}
+  to="/container"
+  sx={{
+    color: "#4A0670",
+    textTransform: "none",
+    position: "relative",
+    "&:hover:after": {
+      transform: "scaleX(1)",
+      transformOrigin: "bottom left",
+    },
+    "&:after": {
+      content: '""',
+      position: "absolute",
+      left: 0,
+      bottom: 0,
+      width: "100%",
+      height: "2px",
+      backgroundColor: "#4A6670",
+      transform: "scaleX(0)",
+      transformOrigin: "bottom right",
+      transition: "transform 0.3s ease",
+    },
+  }}
+>
+  Container
+</Button>
+
         <IconButton
           sx={{ color: "#4A0670" }}
           onClick={handleMenuOpen} // Open menu on click
@@ -163,6 +219,9 @@ function Navbar() {
           </MenuItem>
           <MenuItem component={Link} to="/" onClick={handleMenuClose}>
           Logout
+          </MenuItem>
+          <MenuItem component={Link} to="/add" onClick={handleMenuClose}>
+          Gardener
           </MenuItem>
         </Menu>
       </Toolbar>

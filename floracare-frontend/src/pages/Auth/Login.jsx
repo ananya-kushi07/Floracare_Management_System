@@ -1,21 +1,96 @@
-import React from "react";
-import { Box, Grid, Card, Typography, TextField, Button, Link, Divider } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch,useSelector } from 'react-redux'
+import {
+  Box,
+  Grid,
+  Card,
+  Typography,
+  TextField,
+  Button,
+  Link,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { login } from '../../redux/reducers/userReducer'
+import createData from "../../helpers/createData";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleLogin = (e) => {
+  const auth = useSelector(state => state.user.auth);
+
+  useEffect(() => {
+    if (auth) {
+      navigate('/',{ replace:true });
+    }
+  },[auth])
+
+  // Initialize state for email and password
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Perform login logic here (e.g., validate email and password)
-    // After successful login, redirect to home
-    navigate("/Home");
+    try {
+      const { email, password } = formData;
+  
+      // Validate that email and password are filled
+      if (email.trim().length === 0 || password.trim().length === 0) {
+        alert("Please fill all the details");
+        return;
+      }
+  
+      // Prepare the payload to send to the backend
+      const baseUrl = "http://localhost:5000/api";
+      const payload = {
+        email: email.trim().toLowerCase(),
+        password: password.trim(),
+      };
+  
+      setIsLoading(true);
+  
+      // Send the data to the backend API
+      const res = await createData(baseUrl + "/users/login", "POST", payload, 200);
+  
+      // Check the response and handle success
+      if (res) {
+        alert("Login successful");
+        // You can store the token or user info here if necessary
+        dispatch(login({ token:res.appUserToken}));
+        navigate("/home"); // Redirect to the home page after successful login
+      } else {
+        throw new Error("Login failed");
+      }
+    } catch (err) {
+      alert("An error occurred during login");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <Grid container sx={{ height: "100vh" }}>
+    <Grid container sx={{ height: "100vh", justifyContent: "center" }}>
       {/* Left Side - Login Section */}
-      <Grid item xs={12} md={6} display="flex" alignItems="center" justifyContent="center">
+      <Grid
+        item
+        xs={12}
+        md={6}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
         <Box
           component="form"
           onSubmit={handleLogin}
@@ -31,74 +106,43 @@ const Login = () => {
           <Typography variant="h3" fontWeight="bold" gutterBottom>
             Admin Login
           </Typography>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: "bold",
-              textDecoration: "underline",
-              textDecorationColor: "#4caf50",
-              textDecorationThickness: "4px",
-              marginBottom: 1,
-            }}
-          >
-            Registered Admin
-          </Typography>
           <Typography variant="body1" sx={{ marginBottom: 3 }}>
             If you have an account, log in with your email.
           </Typography>
-          <TextField label="Email" type="email" fullWidth required />
-          <TextField label="Password" type="password" fullWidth required />
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            required
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            fullWidth
+            required
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
           <Button
             type="submit"
             variant="contained"
             color="primary"
             size="large"
             sx={{ textTransform: "none", fontSize: "1rem" }}
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? "Logging in..." : "Login"}
           </Button>
-             
-        </Box>
-      </Grid>
-
-      {/* Vertical Divider */}
-      <Grid item xs={1} sx={{ display: { xs: "none", md: "block" }, height: "100%" }}>
-        <Divider orientation="vertical" sx={{ height: "100%", borderColor: "#4caf50" }} />
-      </Grid>
-
-      {/* Right Side - Sign Up Section */}
-      <Grid item xs={12} md={5} display="flex" alignItems="center" justifyContent="center">
-        <Box
-          sx={{
-            width: "80%",
-            maxWidth: 400,
-            display: "flex",
-            flexDirection: "column",
-            gap: 3,
-            paddingLeft: { xs: 0, md: 3 },
-          }}
-        >
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
-            As New Admin
+          <Typography variant="body2" textAlign="center">
+            Don't have an account?{" "}
+            <Link href="/signup" underline="hover">
+              Sign Up
+            </Link>
           </Typography>
-          <Typography variant="body1" sx={{ marginBottom: 3 }}>
-            By creating an account, dive into FloraCare and manage your plants, tools, and gardening needs.
-          </Typography>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            sx={{ textTransform: "none", fontSize: "1rem" }}
-            onClick={() => navigate("/signup")}
-          >
-            Create Account
-          </Button>
-          {/* <Typography variant="body2" textAlign="center">
-                      Don't have an account?{" "}
-                      <Link href="/signup" underline="hover">
-                        Sign Up
-                      </Link>
-                    </Typography> */}
         </Box>
       </Grid>
     </Grid>

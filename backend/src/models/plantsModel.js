@@ -1,4 +1,4 @@
-const { default: PlantList } = require("../../../floracare-frontend/src/pages/plant/PlantList");
+//const { default: PlantList } = require("../../../floracare-frontend/src/pages/plant/PlantList");
 
 const PlantsModel = {
     getAllPlants: (callback) => {
@@ -31,15 +31,32 @@ const PlantsModel = {
             callback(null, mockData);
         }
     },
-    addPlant: (PlantList, callback) => {
+    addPlant: (plantData, callback) => {
         if (isDbAvailable) {
-            // Normal DB insertion (replace with actual code later)
-            callback(null, `Plant ${PlantList.P_name} added`);
+            // Insert a new plant into the database
+            const query = 'INSERT INTO plants (P_name, P_type, Age, Life_span, Planting_season, photo_url) VALUES (?, ?, ?, ?, ?, ?)';
+            const values = [
+                plantData.P_name,
+                plantData.P_type,
+                plantData.Age,
+                plantData.Life_span,
+                plantData.Planting_season,
+                plantData.photo_url,
+            ];
+            db.query(query, values, (err, results) => {
+                if (err) return callback(err, null);
+                callback(null, results);
+            });
         } else {
-            // Mock Data response
-            callback(null, { message: "Mock add successful", data: PlantsList });
+            // Simulate adding a plant with mock data
+            const mockResponse = {
+                message: `Mock add successful: ${plantData.P_name}`,
+                data: plantData,
+            };
+            callback(null, mockResponse);
         }
     },
 };
 
 module.exports = PlantsModel;
+

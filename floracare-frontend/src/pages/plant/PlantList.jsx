@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import { Box, Card, CardContent, Typography, CardMedia,Grid2 } from '@mui/material';
+import PlantPage from "./PlantPage";
 
 const PlantsList = () => {
     const [plants, setPlants] = useState([]);
@@ -20,6 +23,7 @@ const PlantsList = () => {
     }, []);
 
     return (
+      <><Navbar />
         <Box sx={{ p: 3,pt: 10  }}>
       <Typography variant="h4" gutterBottom align="center" sx={{ mb: 4 ,color: "black" }}>
         🌱 Beautiful Plants Collection 🌿
@@ -84,7 +88,10 @@ const PlantsList = () => {
           </Grid2>
         ))}
       </Grid2>
-    </Box>
+      </Box>
+      <PlantPage />
+    <Footer/>
+    </>
     );
 };
 

@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Container, Typography, Card, CardContent, Button, Grid2, Divider } from "@mui/material";
 import Navbar from "./Navbar"; // Assuming Navbar is in the same directory
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 function Home() {
   return (
@@ -197,8 +198,7 @@ function Home() {
         <Divider sx={{ borderColor: "#4A6670", my: 2 }} />
       </Container>
 
-      {/* Footer
-      <Footer /> */}
+     <Footer/>
     </div>
   );
 }

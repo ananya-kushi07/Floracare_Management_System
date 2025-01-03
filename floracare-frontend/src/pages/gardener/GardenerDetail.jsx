@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Typography, Divider } from "@mui/material";
 import { motion } from "framer-motion";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 import axios from "axios"; // For making API requests
 
 function GardenerDetail() {
