@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Button, Card, CardMedia, CardContent,Fab } from "@mui/material";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
 import axios from "axios"; // For making API requests
 import { Add } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 // import AddGardener from './GardenerPage';
 
 function GardenerPage() {
   const [gardeners, setGardeners] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+
+  const isAdmin = useSelector(state => state.user.isAdmin);
 
   // Fetch gardeners from backend
   useEffect(() => {
@@ -143,9 +144,9 @@ function GardenerPage() {
           </Button>
         </Box>
       </Box>
-      <Fab color="success" aria-label="add"  sx={{ position: 'fixed', bottom: 16, right: 16 }} component={Link} to="/signup">
-        <Add  />
-      </Fab>
+    {isAdmin && <Fab color="success" aria-label="add"  sx={{ position: 'fixed', bottom: 16, right: 16 }} component={Link} to="/signup">
+      <Add  />
+    </Fab>}
     </>
   );
 }

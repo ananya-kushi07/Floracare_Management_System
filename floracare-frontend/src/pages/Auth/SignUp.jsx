@@ -68,7 +68,7 @@ const SignUp = () => {
         // Check the response and handle success
         if (res) {
           alert("New user added successfully");
-          navigate('/login');
+          navigate(-1);
         } else {
           throw new Error("Create error");
         }
