@@ -5,6 +5,8 @@ import SignUp from "./pages/Auth/SignUp";
 import Plant from "./pages/plant/PlantList";
 import Gardener from "./pages/gardener/Gardener";
 import Fertilizer from "./pages/fertilizer/Fertilizer";
+import ToolsAdd from "./pages/tools/ToolsAdd";
+import ContainersAdd from "./pages/container/ContainersAdd";
 import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
 import GardenerDetail from "./pages/gardener/GardenerDetail";
@@ -14,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "./redux/api/userApi";
 import PrivateRoute from "./components/PrivateRoute";
 import ToolsPage from "./pages/tools/ToolsPage";
-import ContainersPage from "./pages/container/ContainerPage";
+import ContainersPage from "./pages/container/ContainersPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -35,9 +37,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<PrivateRoute><SignUp /></PrivateRoute>} />
-          <Route path="/tools" element={<PrivateRoute><ToolsPage /></PrivateRoute>} />
-          <Route path="/container" element={<PrivateRoute><ContainersPage /></PrivateRoute>} />
+          <Route path="/toolsadd" element={<PrivateRoute><ToolsPage /></PrivateRoute>} />
+          <Route path="/containersadd" element={<PrivateRoute><ContainersPage /></PrivateRoute>} />
           <Route path="/plant" element={<PrivateRoute><Plant /></PrivateRoute>} />
+          <Route path="/tools" element={<PrivateRoute><ToolsAdd /></PrivateRoute>} />
+          <Route path="/containers" element={<PrivateRoute><ContainersAdd /></PrivateRoute>} />
           <Route path="/gardener" element={<PrivateRoute><Gardener /></PrivateRoute>} />
           <Route path="/fertilizer" element={<PrivateRoute><Fertilizer /></PrivateRoute>} />
           <Route path="/sidebar" element={<Sidebar />} />

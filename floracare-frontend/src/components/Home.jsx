@@ -139,13 +139,16 @@ function Home() {
               We are dedicated to bringing life to your gardens with our diverse
               range of plants, expert gardening services, and quality
               fertilizers. Our mission is to help you create a thriving and
+              beautiful green space.We are dedicated to bringing life to your gardens with our diverse
+              range of plants, expert gardening services, and quality
+              fertilizers. Our mission is to help you create a thriving and
               beautiful green space.
             </Typography>
           </Grid2>
 
           {/* Image Pile */}
           <Grid2 item xs={12} md={6}>
-            <Box sx={{ position: "relative", height: "300px", width: "100%" }}>
+            <Box sx={{ position: "relative", height: "300px", width: "100%" ,pt:10}}>
               {/* Placeholder Images */}
               <Box
                 component="img"
@@ -168,7 +171,7 @@ function Home() {
                 sx={{
                   position: "absolute",
                   top: "40%",
-                  left: "50%",
+                  left: "350%",
                   width: "120px",
                   height: "120px",
                   boxShadow: 3,

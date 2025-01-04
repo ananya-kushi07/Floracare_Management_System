@@ -210,7 +210,7 @@ function Navbar() {
 
         <Button
           component={Link}
-          to="/container"
+          to="/containers"
           sx={{
             color: "#4A0670",
             textTransform: "none",

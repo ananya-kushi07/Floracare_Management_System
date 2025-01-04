@@ -34,15 +34,15 @@ router.get('/:id', (req, res) => {
 
 // Add a new container
 router.post('/', (req, res) => {
-  const { C_name, Material, Size, Color } = req.body;
+  const { C_name, Material, Size, Color, C_image } = req.body;
 
   // Validate input
-  if (!C_name || !Material || !Size || !Color) {
-    return res.status(400).json({ error: 'All fields are required' });
+  if (!C_name || !Material || !Size || !Color || !C_image) {
+    return res.status(400).json({ error: 'All fields are required, including the image URL' });
   }
 
-  const query = 'INSERT INTO containers (C_name, Material, Size, Color) VALUES (?, ?, ?, ?)';
-  const values = [C_name, Material, Size, Color];
+  const query = 'INSERT INTO containers (C_name, Material, Size, Color, C_image) VALUES (?, ?, ?, ?, ?)';
+  const values = [C_name, Material, Size, Color, C_image];
 
   db.query(query, values, (err, results) => {
     if (err) {

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Navbar from "../../components/Navbar";
-import Footer from "../../components/Home";
 
 const PlantPage = () => {
     const [plantData, setPlantData] = useState({
@@ -85,7 +84,7 @@ const PlantPage = () => {
                     required
                     style={styles.input}
                 />
-                <button type="submit" style={styles.submitButton}>Add Plant</button>
+                <button type="submit" style={styles.submitButton}>Add Tool</button>
             </form>
             {/* <Footer /> */}
         </div>
