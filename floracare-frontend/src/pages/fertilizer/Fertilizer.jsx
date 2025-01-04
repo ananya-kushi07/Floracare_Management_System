@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../../components/Footer";
-import { Box, Card, CardContent, Typography, CardMedia, Grid2,Button } from '@mui/material';
+import { Box, Card, CardContent, Typography, CardMedia, Grid2,Button, Fab } from '@mui/material';
 import Navbar from "../../components/Navbar";
+import { Add, Close } from "@mui/icons-material";
+import FertilizerPage from "./FertilizerPage";
 
 const FertilizersList = () => {
   const [fertilizers, setFertilizers] = useState([]);
+
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     // Fetch data from backend
@@ -23,8 +27,7 @@ const FertilizersList = () => {
 
   return (
     <>
-    <Navbar/>
-    <Box sx={{ p: 3, pt: 10 }}>
+   {!open ? <Box sx={{ p: 3, pt: 10 }}>
       <Typography variant="h4" gutterBottom align="center" sx={{ mb: 4, color: "black" }}>
         🌿 Fertilizers Collection 🌿
       </Typography>
@@ -95,7 +98,10 @@ const FertilizersList = () => {
         ))}
       </Grid2>
     </Box>
-     <Footer/>
+    : <FertilizerPage />}
+    <Fab color={open ? 'error' : "success"} aria-label="add"  sx={{ position: 'fixed', bottom: 16, right: 16 }} onClick={() => setOpen(p => !p)}>
+        {open ? <Close /> :<Add  />}
+      </Fab>
      </>
   );
 };

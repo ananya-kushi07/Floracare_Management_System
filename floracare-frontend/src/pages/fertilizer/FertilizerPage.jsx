@@ -25,7 +25,6 @@ const FertilizerPage = () => {
 
     return (
         <div className="fertilizer-page">
-            <Navbar />
             <h2>Add Fertilizer</h2>
             <form onSubmit={handleSubmit}>
                 <input name="name" placeholder="Name" onChange={handleChange} required />
@@ -33,7 +32,6 @@ const FertilizerPage = () => {
                 <input name="quantity" placeholder="Quantity" onChange={handleChange} type="number" required />
                 <button type="submit">Add Fertilizer</button>
             </form>
-            <Footer/>
         </div>
     );
 };

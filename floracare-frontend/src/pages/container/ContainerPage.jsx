@@ -118,7 +118,6 @@ const ContainersPage = () => {
 
   return (
     <div style={containerPageStyle}>
-      <Navbar />
       <h2 style={headerStyle}>Containers List</h2>
       <div style={containersListStyle}>
         {containers.map((container) => (
@@ -170,8 +169,6 @@ const ContainersPage = () => {
           Add Container
         </button>
       </form>
-
-      <Footer />
     </div>
   );
 };

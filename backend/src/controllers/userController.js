@@ -17,8 +17,8 @@ const userLogin = (req, res) => {
         if (verified) {
             const auth_token = jwt.sign(
                 { id: gardener.G_id, isAdmin: gardener.isAdmin },
-                "process.env.JWT_SECRET_KEY",
-                { expiresIn: "36hr" }
+                process.env.JWT_SECRET_KEY,
+                { expiresIn: process.env.JWT_EXPIRATION_TIME }
             );
             delete gardener.password;
             return res.status(200).json({
@@ -58,7 +58,7 @@ const userSignup = (req, res) => {
 
 const userProfile = (req, res) => {
     const { userId } = req;
-    GardenerModel.getGardenerByEmail(userId, (err, gardener) => {
+    GardenerModel.getGardenerById(userId, (err, gardener) => {
         if (err) {
             console.error(`Error in fetching gardener: ${err}`);
             return res.status(500).json({ data: null, error: "Server error", msg: "Error in fetching profile", auth: false });

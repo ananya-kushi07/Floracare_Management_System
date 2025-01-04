@@ -64,6 +64,14 @@ const GardenerModel = {
             callback(null, results[0]); // Assuming email is unique, return the first result
         });
     },
+    // Fetch a gardener by id
+    getGardenerById: (id, callback) => {
+        const query = 'SELECT * FROM gardeners WHERE G_id = ?';
+        db.query(query, [id], (err, results) => {
+            if (err) return callback(err, null);
+            callback(null, results[0]); // Assuming email is unique, return the first result
+        });
+    },
 };
 
 module.exports = GardenerModel;

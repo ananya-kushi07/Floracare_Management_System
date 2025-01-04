@@ -14,9 +14,9 @@ const authenticatorLocal = async (req, res, next) => {
 
         // Verify the token
         const userId = await jwt.verify(authToken, process.env.JWT_SECRET_KEY);
-        req.userId = userId._id; // Assuming your payload has _id
-        req.role = userId.role;   // Assuming your payload has role
-
+        req.userId = userId.id; // Assuming your payload has _id
+        req.isAdmin = userId.isAdmin;   // Assuming your payload has role
+        
         next(); // Proceed to the next middleware or route handler
     } catch (err) {
         if (err.name === 'TokenExpiredError') {

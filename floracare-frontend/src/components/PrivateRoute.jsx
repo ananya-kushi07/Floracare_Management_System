@@ -20,7 +20,7 @@ const PrivateRoute = ({ children }) => {
 
   return (
     <>{
-        isLoading?<div className='flex h-96 justify-center items-center'><Spinner /></div>:auth?children:navigate('/login',{ replace:true })
+        isLoading?<div style={{ display:'flex',justifyContent:'center',alignItems:'center',height:'100vh' }}><Spinner /></div>:auth?children:navigate('/login',{ replace:true })
     }
     </>
   )

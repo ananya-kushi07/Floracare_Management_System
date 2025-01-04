@@ -7,9 +7,6 @@ import Footer from "./Footer";
 function Home() {
   return (
     <div>
-      {/* Navbar */}
-      <Navbar />
-
       {/* Image with text */}
       <Box
         sx={{
@@ -197,8 +194,6 @@ function Home() {
         </Grid2>
         <Divider sx={{ borderColor: "#4A6670", my: 2 }} />
       </Container>
-
-     <Footer/>
     </div>
   );
 }

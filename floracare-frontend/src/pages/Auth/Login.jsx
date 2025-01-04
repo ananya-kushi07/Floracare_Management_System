@@ -103,10 +103,10 @@ const Login = () => {
             paddingRight: { xs: 0, md: 3 },
           }}
         >
-          <Typography variant="h3" fontWeight="bold" gutterBottom>
-            Admin Login
+          <Typography variant="h3" fontWeight="bold" gutterBottom sx={{ textAlign:"center" }}>
+            Login
           </Typography>
-          <Typography variant="body1" sx={{ marginBottom: 3 }}>
+          <Typography variant="body1" sx={{ }}>
             If you have an account, log in with your email.
           </Typography>
           <TextField
@@ -137,12 +137,12 @@ const Login = () => {
           >
             {isLoading ? "Logging in..." : "Login"}
           </Button>
-          <Typography variant="body2" textAlign="center">
+          {/* <Typography variant="body2" textAlign="center">
             Don't have an account?{" "}
             <Link href="/signup" underline="hover">
               Sign Up
             </Link>
-          </Typography>
+          </Typography> */}
         </Box>
       </Grid>
     </Grid>

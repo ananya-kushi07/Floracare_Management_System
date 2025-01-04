@@ -118,7 +118,6 @@ const ToolsPage = () => {
 
   return (
     <div style={pageStyle}>
-      <Navbar />
       <h2 style={titleStyle}>Tools List</h2>
       <div style={toolsListStyle}>
         {tools.map((tool) => (
@@ -166,8 +165,6 @@ const ToolsPage = () => {
           Add Tool
         </button>
       </form>
-
-      <Footer />
     </div>
   );
 };
