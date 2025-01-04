@@ -95,6 +95,7 @@ const PlantPage = () => {
 const styles = {
     pageContainer: {
         padding: '20px',
+        paddingTop: '80px',
         fontFamily: 'Arial, sans-serif',
         backgroundColor: '#f4f4f4',
         minHeight: '100vh',

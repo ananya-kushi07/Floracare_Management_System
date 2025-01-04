@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { Box, Card, CardContent, Typography, CardMedia,Grid2 } from '@mui/material';
+import { Box, Card, CardContent, Typography, CardMedia,Grid2, Fab } from '@mui/material';
 import PlantPage from "./PlantPage";
+import { Add, Close } from "@mui/icons-material";
 
 const PlantsList = () => {
     const [plants, setPlants] = useState([]);
+
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         // Fetch data from backend
@@ -23,7 +26,8 @@ const PlantsList = () => {
     }, []);
 
     return (
-      <><Navbar />
+      <>
+        {!open ? 
         <Box sx={{ p: 3,pt: 10  }}>
       <Typography variant="h4" gutterBottom align="center" sx={{ mb: 4 ,color: "black" }}>
         🌱 Beautiful Plants Collection 🌿
@@ -89,8 +93,10 @@ const PlantsList = () => {
         ))}
       </Grid2>
       </Box>
-      <PlantPage />
-    <Footer/>
+      : <PlantPage />}
+      <Fab color={open ? 'error' : "success"} aria-label="add"  sx={{ position: 'fixed', bottom: 16, right: 16 }} onClick={() => setOpen(p => !p)}>
+        {open ? <Close /> :<Add  />}
+      </Fab>
     </>
     );
 };

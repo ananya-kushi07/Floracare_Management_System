@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid, Card, Typography, TextField, Button, Link } from "@mui/material";
+import { Box, Grid, Card, Typography, TextField, Button, Link,Select,MenuItem } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import createData from "../../helpers/createData";
 
@@ -51,12 +51,12 @@ const SignUp = () => {
         // Prepare the payload to send to the backend
         const baseUrl = "http://localhost:5000/api";
         const payload = {
-          name: name.trim().toLowerCase(),
+          G_name: name.trim().toLowerCase(),
           email: email.trim().toLowerCase(),
           password: password.trim(),
-          phone: phone.trim(),
-          experienceLevel: experienceLevel.trim().toLowerCase(),
-          specialization: specialization.trim().toLowerCase(),
+          Phone: phone.trim(),
+          Experience_level: experienceLevel.trim().toLowerCase(),
+          Specialization: specialization.trim().toLowerCase(),
           isAdmin: isAdmin, // Assuming it's a boolean value
         };
 
@@ -83,7 +83,7 @@ const SignUp = () => {
   };
 
   return (
-    <Grid container sx={{ height: "100vh" }}>
+    <Grid container sx={{ height: "100vh",paddingTop: 8,marginBottom: 11 }}>
       {/* Left Side - Card Section */}
       <Grid item xs={12} md={6}>
         <Card
@@ -121,8 +121,8 @@ const SignUp = () => {
             gap: 3,
           }}
         >
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
-            Sign Up
+          <Typography variant="h4" fontWeight="bold" gutterBottom textAlign="center">
+            Create User
           </Typography>
           <TextField
             label="Name"
@@ -178,6 +178,10 @@ const SignUp = () => {
             value={formData.specialization}
             onChange={handleInputChange}
           />
+          <Select name="isAdmin" value={formData.isAdmin} onChange={handleInputChange}>
+            <MenuItem value={true}>Admin</MenuItem>
+            <MenuItem value={false}>Gardener</MenuItem>
+          </Select>
           <Button
             type="submit"
             variant="contained"
@@ -188,12 +192,12 @@ const SignUp = () => {
           >
             {isLoading ? "Creating..." : "Create Account"}
           </Button>
-          <Typography variant="body2" textAlign="center">
+          {/* <Typography variant="body2" textAlign="center">
             Already have an account?{" "}
             <Link href="/login" underline="hover">
               Login
             </Link>
-          </Typography>
+          </Typography> */}
         </Box>
       </Grid>
     </Grid>

@@ -35,17 +35,16 @@ const userSlice = createSlice({
 
     builder.addCase(getUserProfile.fulfilled, (state, action) => {
       const { auth, data, statusCode } = action.payload;
+      
       if (statusCode === 401) {
         clearLocalStorage('appUserToken');
-        // clearLocalStorage('notifyToken');
         state = { ...initialUser, auth: false };
         return state;
       }else {
         if (auth) {
-          console.log(data);
-          
-          const { _id, ...rest } = data;
-          return { ...state, ...rest, userId: _id, auth: auth }
+          // console.log(data);
+          const { G_id,Experience_level,G_name,Specialization,Phone,email,isAdmin } = data;
+          return { ...state, userId: G_id,experience: Experience_level,isAdmin: isAdmin,name: G_name,phone: Phone,specialization: Specialization,email:email, auth: auth }
         } else return { ...state, auth: auth }
       }
     });

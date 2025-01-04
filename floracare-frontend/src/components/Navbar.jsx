@@ -2,15 +2,25 @@ import React, { useState } from "react";
 import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, IconButton } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // Profile icon
 import { Link } from "react-router-dom";
+import { useSelector,useDispatch } from 'react-redux';
+// import { userLogout } from "../redux/api/userApi";
+import { logout } from "../redux/reducers/userReducer";
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const auth = useSelector(state => state.user.auth);
+  const dispatch = useDispatch();
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+  const handleLogout = () => {
+    dispatch(logout());
     setAnchorEl(null);
   };
 
@@ -60,6 +70,35 @@ function Navbar() {
         >
           Home
         </Button>
+        {!auth ? <>
+        <Button
+          component={Link}
+          to="/login"
+          sx={{
+            color: "#4A0670",
+            textTransform: "none",
+            position: "relative",
+            "&:hover:after": {
+              transform: "scaleX(1)",
+              transformOrigin: "bottom left",
+            },
+            "&:after": {
+              content: '""',
+              position: "absolute",
+              left: 0,
+              bottom: 0,
+              width: "100%",
+              height: "2px",
+              backgroundColor: "#4A6670",
+              transform: "scaleX(0)",
+              transformOrigin: "bottom right",
+              transition: "transform 0.3s ease",
+            },
+          }}
+        >
+          Login
+        </Button>
+        </> : <>
         <Button
           component={Link}
           to="/plant"
@@ -142,60 +181,60 @@ function Navbar() {
           Fertilizer
         </Button>
         <Button
-  component={Link}
-  to="/tools"
-  sx={{
-    color: "#4A0670",
-    textTransform: "none",
-    position: "relative",
-    "&:hover:after": {
-      transform: "scaleX(1)",
-      transformOrigin: "bottom left",
-    },
-    "&:after": {
-      content: '""',
-      position: "absolute",
-      left: 0,
-      bottom: 0,
-      width: "100%",
-      height: "2px",
-      backgroundColor: "#4A6670",
-      transform: "scaleX(0)",
-      transformOrigin: "bottom right",
-      transition: "transform 0.3s ease",
-    },
-  }}
->
-  Tools
-</Button>
+          component={Link}
+          to="/tools"
+          sx={{
+            color: "#4A0670",
+            textTransform: "none",
+            position: "relative",
+            "&:hover:after": {
+              transform: "scaleX(1)",
+              transformOrigin: "bottom left",
+            },
+            "&:after": {
+              content: '""',
+              position: "absolute",
+              left: 0,
+              bottom: 0,
+              width: "100%",
+              height: "2px",
+              backgroundColor: "#4A6670",
+              transform: "scaleX(0)",
+              transformOrigin: "bottom right",
+              transition: "transform 0.3s ease",
+            },
+          }}
+        >
+          Tools
+        </Button>
 
-<Button
-  component={Link}
-  to="/container"
-  sx={{
-    color: "#4A0670",
-    textTransform: "none",
-    position: "relative",
-    "&:hover:after": {
-      transform: "scaleX(1)",
-      transformOrigin: "bottom left",
-    },
-    "&:after": {
-      content: '""',
-      position: "absolute",
-      left: 0,
-      bottom: 0,
-      width: "100%",
-      height: "2px",
-      backgroundColor: "#4A6670",
-      transform: "scaleX(0)",
-      transformOrigin: "bottom right",
-      transition: "transform 0.3s ease",
-    },
-  }}
->
-  Container
-</Button>
+        <Button
+          component={Link}
+          to="/container"
+          sx={{
+            color: "#4A0670",
+            textTransform: "none",
+            position: "relative",
+            "&:hover:after": {
+              transform: "scaleX(1)",
+              transformOrigin: "bottom left",
+            },
+            "&:after": {
+              content: '""',
+              position: "absolute",
+              left: 0,
+              bottom: 0,
+              width: "100%",
+              height: "2px",
+              backgroundColor: "#4A6670",
+              transform: "scaleX(0)",
+              transformOrigin: "bottom right",
+              transition: "transform 0.3s ease",
+            },
+          }}
+        >
+          Container
+        </Button>
 
         <IconButton
           sx={{ color: "#4A0670" }}
@@ -217,13 +256,10 @@ function Navbar() {
           <MenuItem component={Link} to="/settings" onClick={handleMenuClose}>
             Settings
           </MenuItem>
-          <MenuItem component={Link} to="/" onClick={handleMenuClose}>
-          Logout
+          <MenuItem component={Link} to="/" onClick={handleLogout}>
+            Logout
           </MenuItem>
-          <MenuItem component={Link} to="/add" onClick={handleMenuClose}>
-          Gardener
-          </MenuItem>
-        </Menu>
+        </Menu> </>}
       </Toolbar>
     </AppBar>
   );

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Button, Card, CardMedia, CardContent } from "@mui/material";
+import { Box, Typography, Button, Card, CardMedia, CardContent,Fab } from "@mui/material";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import axios from "axios"; // For making API requests
-import AddGardener from './GardenerPage';
+import { Add } from "@mui/icons-material";
+// import AddGardener from './GardenerPage';
 
 function GardenerPage() {
   const [gardeners, setGardeners] = useState([]);
@@ -53,8 +54,7 @@ function GardenerPage() {
 
   return (
     <>
-      <Navbar />
-      <Box sx={{ backgroundColor: "#EAF4F4",minWidth:"200vh", minHeight: "100vh", padding: "20px" ,pt: 10 }}>
+      <Box sx={{ backgroundColor: "#EAF4F4", minWidth: "200vh", minHeight: "100vh", padding: "20px", pt: 10 }}>
         <Typography variant="h3" align="center" sx={{ marginBottom: "40px", color: "#4A6670", my: "27px" }}>
           Meet Our Gardeners
         </Typography>
@@ -75,8 +75,8 @@ function GardenerPage() {
               index === currentIndex
                 ? "center"
                 : index === (currentIndex - 1 + gardeners.length) % gardeners.length
-                ? "left"
-                : "right";
+                  ? "left"
+                  : "right";
 
             return (
               <Card
@@ -143,8 +143,9 @@ function GardenerPage() {
           </Button>
         </Box>
       </Box>
-      <AddGardener />
-      <Footer/>
+      <Fab color="success" aria-label="add"  sx={{ position: 'fixed', bottom: 16, right: 16 }} component={Link} to="/signup">
+        <Add  />
+      </Fab>
     </>
   );
 }
