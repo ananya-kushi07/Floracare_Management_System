@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="App">
       {/* Routes */}
-      <Navbar />
+      <Navbar />   {/* Navbar */}
       <div style={{ minHeight: "80vh" }}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -46,7 +46,7 @@ function App() {
           <Route path="/fertilizer" element={<PrivateRoute><FertilizerPage /></PrivateRoute>} />
         </Routes>
       </div>
-      <Footer />
+      <Footer />  {/* Footer */}
     </div>
   );
 }
