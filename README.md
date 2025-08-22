@@ -123,18 +123,6 @@ ALTER TABLE plants ADD COLUMN health_status VARCHAR(50) DEFAULT 'Healthy';
 
 ---
 
-## 🎯 Key Features
-
-- 🌱 **Plant Management:** Add, edit, remove, and monitor plants with detailed records.
-- 🛠️ **Resource Allocation:** Assign tools, containers, and fertilizers to specific gardeners.
-- 🧑‍🌾 **User & Admin Roles:** Distinct permissions to ensure security and data integrity.
-- 🔒 **Robust Security:** JWT authentication and bcrypt password encryption.
-- 📊 **Inventory & Maintenance Logs:** Track fertilizer expiry, tool usage, and maintenance activities.
-- 🌍 **RESTful API:** Consistent, scalable endpoints for integration.
-- 🏷️ **Database Normalization:** Structured, efficient storage in 3NF.
-
----
-
 ## 📂 Project Structure
 
 ```
@@ -157,6 +145,44 @@ Floracare_Management_System/
     │   └── App.jsx
     └── vite.config.js
 ```
+
+---
+
+
+## 🚀 Getting Started
+
+**Backend**
+```bash
+cd backend
+npm install
+node server.js
+```
+
+**Frontend**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+**Database**
+- Create the database:
+  ```sql
+  CREATE DATABASE floracare;
+  ```
+- Import the schema from `schema.sql`.
+
+---
+
+## 🎯 Key Features
+
+- 🌱 **Plant Management:** Add, edit, remove, and monitor plants with detailed records.
+- 🛠️ **Resource Allocation:** Assign tools, containers, and fertilizers to specific gardeners.
+- 🧑‍🌾 **User & Admin Roles:** Distinct permissions to ensure security and data integrity.
+- 🔒 **Robust Security:** JWT authentication and bcrypt password encryption.
+- 📊 **Inventory & Maintenance Logs:** Track fertilizer expiry, tool usage, and maintenance activities.
+- 🌍 **RESTful API:** Consistent, scalable endpoints for integration.
+- 🏷️ **Database Normalization:** Structured, efficient storage in 3NF.
 
 ---
 
